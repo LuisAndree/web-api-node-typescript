@@ -62,5 +62,16 @@ Aqui está o resumo das camadas:
 
 Essa abordagem é muito usada em frameworks como **Express.js** no Node.js.
 
+IIIº etapa - app.ts
+
+1º importar as dependencias
+import "express-async-errors";
+import express, { Request, Response, NextFunction} from "express";
+import cors from "cors";
+import helmet from "helmet";
+import morgan from "morgan";
+
+2° 
+
 
 
