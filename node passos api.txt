@@ -1,0 +1,66 @@
+passos de uma api node usando TS
+
+Iº etapa - configuração do projeto:
+
+1º - npm init -y 
+2º - npm install - express(web api), helmet(segurança), cors(para usar o front), 
+		   dotenv(configuração), morgan(terminal), express-async-errors(para tratar erros asyncronos) 
+		   ->  instalar as dependencias externas
+
+3º - dependencias de dev - npm install -D typescript ts-node @types/express @types/cors 
+			   @types/helmet @types/dotenv @types/morgan
+
+4º - configurar o typescript no projeto - npx tsc --init
+
+5º - configurar as variaveis de ambiente .env
+
+6º - .gitignore 
+
+7º configurar os scripts no package.json - "dev": "npx nodemon src/server.ts --watch 'src' -e ts"
+					   "compile": "npx tsc"
+					   "start": "node ./dist/server.js"		   
+
+IIº etapa - Arquitetura
+	
+1. usuário ou aplicação manda uma requisição (HTTP)  
+   * VERBO  
+   * ENDEREÇO => ROTA  
+
+2. roteada => routers  
+   * entende a requisição e distribui ela pra alguém  
+
+3. controle => controllers  
+   * processamento inicial da requisição (validação, segurança, transformação)  
+
+4. persistência => repositories  
+   * processamento de dados  
+
+5. modelos => models  
+   * estrutura de dados  
+
+6. criar o app.ts q é o arquivo q interliga todos os modulos
+
+7. criar o server.ts
+
+A requisição vem de um usuário e é processada por um roteador (*router*), 
+que a encaminha para um controlador (*controller*). O controlador então passa 
+a requisição para um *repository*, que utiliza um *model* para persistir os 
+dados. Tudo isso está integrado no `app.ts`, cuja inicialização é feita pelo 
+`server.ts`.
+
+Essa arquitetura segue o padrão **MVC (Model-View-Controller)** com a adição 
+de **Repositories** para a camada de persistência. Muitas aplicações backend 
+estruturadas dessa forma também são chamadas de **Clean Architecture** ou 
+**Layered Architecture** devido à separação clara de responsabilidades.  
+
+Aqui está o resumo das camadas:  
+1. **Router** → Define as rotas e direciona as requisições.  
+2. **Controller** → Processa a requisição (validação, segurança, transformação).  
+3. **Repository** → Camada de persistência, responsável por acessar o banco de dados.  
+4. **Model** → Define a estrutura dos dados.  
+5. **App.ts e Server.ts** → O `app.ts` configura a aplicação e o `server.ts` inicializa o servidor.  
+
+Essa abordagem é muito usada em frameworks como **Express.js** no Node.js.
+
+
+
